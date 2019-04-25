@@ -1,0 +1,26 @@
+/* ==========================================================================
+   NHSX website styles
+   ========================================================================== */
+
+/**
+ * NHSX uses some custom styles in addition to the
+ * NHS.UK frontend library.
+ *
+ * This also includes some hotfixes utilities for issues
+ * found in the NHS.UK frontend library.
+ */
+
+// Core
+@import './nhsx/core/colours';
+@import './nhsx/core/page';
+
+// Components
+@import './nhsx/components/footer';
+@import './nhsx/components/header';
+@import './nhsx/components/hero';
+@import './nhsx/components/promo';
+@import './nhsx/components/tables';
+@import './nhsx/components/video';
+
+// Utilities
+@import './nhsx/utilities';

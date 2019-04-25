@@ -1,0 +1,55 @@
+{
+  "name": "nhsx-website",
+  "version": "1.0.2",
+  "description": "The NHSX website",
+  "main": "app.js",
+  "scripts": {
+    "babel": "babel --presets es2015 app/scripts/main.js -o public/js/main.bundle.js",
+    "build": "npm run build:css && npm run build:js && npm run build:assets",
+    "build:css": "node-sass --output-style compressed app/styles/main.scss public/css/main.min.css",
+    "build:js": "npm run webpack",
+    "build:assets": "copyfiles --flat app/assets/* public/assets/",
+    "clean": "touch public/tmp.txt && rm -rf public/*",
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint app/scripts/**",
+    "lint:css": "sass-lint 'app/**/*.scss' -v -q",
+    "nuke": "npm run clean && rm -rf node_modules/",
+    "postinstall": "npm run build",
+    "start": "node app",
+    "test": "npm run lint",
+    "prewatch": "npm run build:assets",
+    "watch": "concurrently \"npm run watch:scss\" \"npm run watch:js\" \"npm start\"",
+    "watch:scss": "npm run build:css -- -w",
+    "watch:js": "webpack -w",
+    "webpack": "webpack"
+  },
+  "author": "https://github.com/nhsx",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nhsx/nhsx-website.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.16.4",
+    "nunjucks": "^3.2.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "browser-sync": "^2.26.3",
+    "concurrently": "^4.1.0",
+    "copyfiles": "^2.1.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-nhsuk": "^0.16.0",
+    "eslint-plugin-import": "^2.16.0",
+    "nhsuk-frontend": "^2.1.0",
+    "node-sass": "^4.11.0",
+    "sass-lint": "^1.12.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  }
+}
